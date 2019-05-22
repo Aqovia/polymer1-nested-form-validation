@@ -1,0 +1,63 @@
+<link rel="import" href="/bower_components/polymer/polymer.html" />
+<link rel="import" href="/bower_components/iron-form-element-behavior/iron-form-element-behavior.html">
+<link rel="import" href="/bower_components/iron-validatable-behavior/iron-validatable-behavior.html">
+<link rel="import" href="/web_components/xx-date/xx-date.html">
+<dom-module id="xx-identification">
+    <template>
+        <style>
+            .id-container {
+                border:solid 1px #ddd;
+                border-radius: 5px;
+                padding: 3px;
+            }
+        </style>
+
+        <div class="id-container">
+            <h3>Identification</h3>
+            <table>
+                <tr>
+                    <td>Identification Type:</td>
+                    <td>
+                        <input type="text" value="{{identificationType::input}}" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Start Date:</td>
+                    <td>
+                        <xx-date value="{{startDate::input}}"></xx-date>
+                    </td>
+                </tr>
+                <tr>
+                    <td>End Date:</td>
+                    <td>
+                        <xx-date value="{{endDate::input}}"></xx-date>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </template>
+
+    <script>
+        Polymer({
+            is: "xx-identification",
+            behaviors: [
+                Polymer.IronFormElementBehavior,
+                Polymer.IronValidatableBehavior
+            ],
+            properties: {
+                startDate: String,
+                endDate: String,
+                identificationType: String,
+            },
+            _getValidity: function () {
+                var isValid = true;
+
+                Polymer.dom(this.root).querySelectorAll(".id-container *").forEach(function(el) {
+                    if (el.validate) isValid = el.validate() && isValid;
+                });
+
+                return isValid;
+            }
+        });
+    </script>
+</dom-module>

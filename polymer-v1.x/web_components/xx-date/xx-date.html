@@ -1,0 +1,26 @@
+<link rel="import" href="/bower_components/polymer/polymer.html" />
+<link rel="import" href="/bower_components/iron-form-element-behavior/iron-form-element-behavior.html">
+<link rel="import" href="/bower_components/iron-validatable-behavior/iron-validatable-behavior.html">
+<dom-module id="xx-date">
+    <template>         
+        <input type="text" name="date" value="{{value::input}}" placeholder="Format: DD/MM/YYYY" />
+        <span style="color:red" hidden="[[_isValid]]">Please enter a valid date</span>
+    </template>
+    <script>
+        Polymer({
+            is: "xx-date",
+            behaviors: [
+                Polymer.IronFormElementBehavior,
+                Polymer.IronValidatableBehavior
+            ],
+            properties: {
+                value: { type: String },
+                _isValid : { type: Boolean, value:true }
+            },
+            _getValidity: function () {
+                this._isValid = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/.test(this.value);                
+                return this._isValid;
+            }
+        });
+    </script>
+</dom-module>

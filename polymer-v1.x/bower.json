@@ -1,0 +1,14 @@
+{
+    "name": "polymer-1-testing",
+    "private": true,
+      "dependencies": {
+          "webcomponentsjs": "^0.7.22",
+          "iron-form": "PolymerElements/iron-form#^1.1.1",
+          "iron-validatable-behavior": "PolymerElements/iron-validatable-behavior#^1.1.1",
+          "iron-form-element-behavior": "PolymerElements/iron-form-element-behavior#^1.0.6"
+      },
+    "resolutions": {
+      "webcomponentsjs": "^0.7.24"
+    }
+  }
+  

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Polymer 1 Nesting</title>
+
+    <style>
+        body {
+            background-color: #eee;
+        }
+
+        .container {
+            width: 600px;
+            border: solid 1px #ccc;
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+
+    <link rel="import" href="/bower_components/polymer/polymer.html">
+    <link rel="import" href="/bower_components/iron-form/iron-form.html">
+    <link rel="import" href="/web_components/xx-identification/xx-identification.html">
+
+    <dom-module id="xx-mainform">
+        <template>
+
+            <form is="iron-form" method="put" action="/">
+                <div class="container">
+                    <table>
+                        <tr>
+                            <td>Name:</td>
+                            <td><input type="text" name="name" required />
+
+                                <xx-date value="" required></xx-date>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <br />
+                                <xx-identification name="identification" required></xx-identification>
+                            </td>
+                        </tr>
+                    </table>
+                    <p>
+                        <input type="submit" value="Submit" />
+                    </p>
+                </div>
+            </form>
+        </template>
+        <script>
+            Polymer({
+                is: "xx-mainform",
+                behaviors: [
+                    Polymer.IronFormElementBehavior,
+                    Polymer.IronValidatableBehavior
+                ]               
+            });
+        </script>
+    </dom-module>
+    <xx-mainform />
+    
+</body>
+
+</html>
